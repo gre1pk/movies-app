@@ -1,0 +1,15 @@
+.container {
+  max-width: 1010px;
+  margin: 0 auto;
+  min-width: 320px;
+
+  height: auto;
+  background-color: #ffffff;
+}
+.layout {
+  background-color: #ffffff;
+}
+.main {
+  margin: 0 36px;
+  background-color: #ffffff;
+}
