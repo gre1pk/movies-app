@@ -4,14 +4,21 @@ export default class MoviDbService {
   apiKey = '73b1607922621484d0253db697cda937'
 
   async getResurse(url) {
-    const res = await fetch(`${this.baseUrl}${url}`)
-    return res.json()
+    try {
+      const result = await fetch(`${this.baseUrl}${url}`)
+      if (!result.ok) {
+        throw new Error(`${result.status}`)
+      }
+      return await result.json()
+    } catch (err) {
+      throw new Error(err)
+    }
   }
 
   async getSearchMovies(search = 'return', page = '1') {
     const res = await this.getResurse(
       `/search/movie/?api_key=${this.apiKey}&language=en-US&query=${search}&page=${page}`
     )
-    return res.results
+    return res
   }
 }
