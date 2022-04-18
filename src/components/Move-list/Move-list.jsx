@@ -8,7 +8,7 @@ function MoveList({ movies }) {
   const elements = movies.map((el) => {
     const { id, original_title: originalTitle, release_date: releaseDate, poster_path: posterPath, overview } = el
     const dateFns = format(new Date(releaseDate), 'MMMM d, yyyy')
-    const text = cutTexst(overview, 150)
+    const text = cutTexst(overview, 120)
 
     return (
       <Col span={12} key={id}>

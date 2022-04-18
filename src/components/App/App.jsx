@@ -1,9 +1,9 @@
 import React from 'react'
-import { Layout } from 'antd'
+import { Layout, Spin, Alert } from 'antd'
 import './App.css'
 
 import MoviDbService from '../../services/moviDbService'
-import Movelist from '../Move-list'
+import MoveList from '../Move-list'
 
 export default class App extends React.Component {
   moviesDb = new MoviDbService()
@@ -12,25 +12,41 @@ export default class App extends React.Component {
     super()
     this.state = {
       movies: [],
+      loading: true,
+      error: false,
     }
-    this.loadMoviesServer()
+    this.onLoadMovies()
   }
 
-  loadMoviesServer() {
-    this.moviesDb.getSearchMovies().then((res) => {
-      this.setState({ movies: res })
-    })
+  onError = () => {
+    this.setState({ loading: false, error: true })
+  }
+
+  onLoadMovies() {
+    this.moviesDb
+      .getSearchMovies()
+      .then((res) => {
+        this.setState({ movies: res.results, loading: false })
+      })
+      .catch(this.onError)
   }
 
   render() {
     const { Content } = Layout
-    const { movies } = this.state
+    const { movies, loading, error } = this.state
+
+    const hasDate = !(loading || error)
+    const errorMsg = error ? <Alert message="Error" type="error" /> : null
+    const spiner = loading ? <Spin size="large" className="spiner" /> : null
+    const content = hasDate ? <MoveList movies={movies} /> : null
 
     return (
       <div className="container">
         <Layout className="layout">
           <Content className="main">
-            <Movelist movies={movies} />
+            {errorMsg}
+            {spiner}
+            {content}
           </Content>
         </Layout>
       </div>
