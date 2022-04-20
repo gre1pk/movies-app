@@ -1,3 +1,12 @@
+function transformMovies(result) {
+  return {
+    page: result.page,
+    results: result.results,
+    totalPages: result.total_pages,
+    totalResults: result.total_results,
+  }
+}
+
 export default class MoviDbService {
   baseUrl = 'https://api.themoviedb.org/3'
 
@@ -19,6 +28,7 @@ export default class MoviDbService {
     const res = await this.getResurse(
       `/search/movie/?api_key=${this.apiKey}&language=en-US&query=${search}&page=${page}`
     )
-    return res
+    const newFormatObj = transformMovies(res)
+    return newFormatObj
   }
 }

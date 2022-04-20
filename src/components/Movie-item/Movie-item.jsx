@@ -5,7 +5,9 @@ function MovieItem({ title, releaseDate, posterPath, overview }) {
   const { Text, Title } = Typography
   return (
     <Card className="card">
-      <img className="card__img" alt={`poster ${title}`} src={`https://image.tmdb.org/t/p/w500/${posterPath} `} />
+      <div className="card__img">
+        <img alt={`poster ${title}`} src={`https://image.tmdb.org/t/p/w500/${posterPath} `} />
+      </div>
       <div className="card_content">
         <Title level={4} className="card__movie-title">
           {title}
