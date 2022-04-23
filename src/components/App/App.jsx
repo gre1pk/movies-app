@@ -5,6 +5,7 @@ import './App.css'
 
 import MoviDbService from '../../services/moviDbService'
 import MoveList from '../Move-list'
+import PageHeader from '../Page-header'
 import SearchMovies from '../SearchMovies'
 
 export default class App extends React.Component {
@@ -19,6 +20,7 @@ export default class App extends React.Component {
       queryStr: 'return',
       totalPages: 1,
       currentPages: 1,
+      tabActive: 'search',
     }
   }
 
@@ -31,6 +33,10 @@ export default class App extends React.Component {
     if (prevState.queryStr !== queryStr || prevState.currentPages !== currentPages) {
       this.onLoadMovies()
     }
+  }
+
+  onTogleTab = (tabName) => {
+    this.setState({ tabActive: tabName })
   }
 
   onSearchMovies = (text) => {
@@ -61,7 +67,7 @@ export default class App extends React.Component {
 
   render() {
     const { Content } = Layout
-    const { movies, loading, error, totalPages, currentPages } = this.state
+    const { movies, loading, error, totalPages, currentPages, tabActive } = this.state
 
     const hasDate = !(loading || error)
     const errorMsg = error ? <Alert message="Error" type="error" /> : null
@@ -74,13 +80,15 @@ export default class App extends React.Component {
         onCurrentPages={this.onCurrentPages}
       />
     ) : null
+    const searchPanel = tabActive === 'search' ? <SearchMovies searchValue={this.onSearchMovies} /> : null
 
     return (
       <div className="container">
         <Online>
           <Layout className="layout">
+            <PageHeader onTogleTab={this.onTogleTab} />
             <Content className="main">
-              <SearchMovies searchValue={this.onSearchMovies} />
+              {searchPanel}
               {errorMsg}
               {spiner}
               {content}
