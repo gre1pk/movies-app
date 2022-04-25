@@ -9,7 +9,7 @@
 
 .card__img {
   width: 183px;
-  height: 100%;
+  height: 277px;
   flex-shrink: 0;
 }
 
@@ -17,14 +17,47 @@
   width: 100%;
   height: 100%;
 }
-.card_content {
+.card__content {
+  position: relative;
   padding: 10px 20px 0 20px;
+}
+.card__header {
+  display: flex;
+  justify-content: space-between;
+}
+.card__reiting {
+  flex-shrink: 0;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+  line-height: 22px;
+  border-radius: 50%;
+}
+.card__reiting.max {
+  border: 2px solid #66e900;
+}
+.card__reiting.norm {
+  border: 2px solid #e9d100;
+}
+.card__reiting.poor {
+  border: 2px solid #e97e00;
+}
+.card__reiting.low {
+  border: 2px solid #e90000;
 }
 .card__release-date {
   display: block;
-  margin-bottom: 7px;
+}
+.ant-tag {
+  margin-top: 7px;
 }
 .card__overview {
   display: block;
   margin-top: 7px;
+  font-size: 12px;
+}
+.card__rate {
+  position: absolute;
+  bottom: 15px;
 }
