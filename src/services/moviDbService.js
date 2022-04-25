@@ -24,11 +24,26 @@ export default class MoviDbService {
     }
   }
 
+  async getGenresId() {
+    const res = await this.getResurse(`/genre/movie/list?api_key=${this.apiKey}&language=en-US`)
+    return res
+  }
+
+  async getSessionID() {
+    const res = await this.getResurse(`/authentication/guest_session/new?api_key=${this.apiKey}`)
+    return res
+  }
+
   async getSearchMovies(search = 'return', page = '1') {
     const res = await this.getResurse(
       `/search/movie/?api_key=${this.apiKey}&language=en-US&query=${search}&page=${page}`
     )
-    const newFormatObj = transformMovies(res)
-    return newFormatObj
+    return transformMovies(res)
+  }
+
+  async getRatedMovies(sessionId) {
+    const res = await this.getResurse(`/guest_session/${sessionId}/rated/movies?api_key=${this.apiKey}`)
+
+    return transformMovies(res)
   }
 }

@@ -13,18 +13,25 @@ function MoveList({ movies, totalPages, currentPages, onCurrentPages }) {
   }
   const elements = movies.map((el) => {
     const newEl = trasformDate(el)
-    const { id, originalTitle, releaseDate, posterPath, overview } = newEl
+    const { id, originalTitle, releaseDate, posterPath, overview, voteAverage, movieGenre } = newEl
     let dateFns = 'unknown date'
 
     if (releaseDate) {
       dateFns = format(new Date(releaseDate), 'MMMM d, yyyy')
     }
 
-    const text = cutTexst(overview, 120)
+    const text = cutTexst(overview, 80)
 
     return (
       <Col span={12} key={id}>
-        <MovieItem title={originalTitle} releaseDate={dateFns} posterPath={posterPath} overview={text} />
+        <MovieItem
+          title={originalTitle}
+          releaseDate={dateFns}
+          posterPath={posterPath}
+          overview={text}
+          voteAverage={voteAverage}
+          movieGenre={movieGenre}
+        />
       </Col>
     )
   })
