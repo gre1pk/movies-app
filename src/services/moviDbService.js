@@ -1,11 +1,4 @@
-function transformMovies(result) {
-  return {
-    page: result.page,
-    results: result.results,
-    totalPages: result.total_pages,
-    totalResults: result.total_results,
-  }
-}
+import { transformMovies, transformIDSession } from '../handlers/transformDate'
 
 export default class MoviDbService {
   baseUrl = 'https://api.themoviedb.org/3'
@@ -24,6 +17,23 @@ export default class MoviDbService {
     }
   }
 
+  async postResurse(url, metod, option) {
+    try {
+      const result = await fetch(`${this.baseUrl}${url}`, {
+        method: metod,
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify(option),
+      })
+      if (!result.ok) {
+        throw new Error(`${result.status}`)
+      }
+    } catch (err) {
+      throw new Error(err)
+    }
+  }
+
   async getGenresId() {
     const res = await this.getResurse(`/genre/movie/list?api_key=${this.apiKey}&language=en-US`)
     return res
@@ -31,7 +41,7 @@ export default class MoviDbService {
 
   async getSessionID() {
     const res = await this.getResurse(`/authentication/guest_session/new?api_key=${this.apiKey}`)
-    return res
+    return transformIDSession(res)
   }
 
   async getSearchMovies(search = 'return', page = '1') {
@@ -43,7 +53,14 @@ export default class MoviDbService {
 
   async getRatedMovies(sessionId) {
     const res = await this.getResurse(`/guest_session/${sessionId}/rated/movies?api_key=${this.apiKey}`)
-
     return transformMovies(res)
+  }
+
+  async setRateMovie(value, idMovie, sessionId) {
+    await this.postResurse(
+      `/movie/${idMovie}/rating?api_key=${this.apiKey}&guest_session_id=${sessionId}`,
+      'POST',
+      value
+    )
   }
 }

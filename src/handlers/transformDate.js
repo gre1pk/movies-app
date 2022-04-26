@@ -7,7 +7,20 @@ function trasformDate(movie) {
     overview: movie.overview,
     voteAverage: movie.vote_average,
     movieGenre: movie.genre_ids,
+    rating: movie.rating,
   }
 }
 
-export default trasformDate
+function transformMovies(result) {
+  return {
+    page: result.page,
+    results: result.results,
+    totalPages: result.total_pages,
+    totalResults: result.total_results,
+  }
+}
+
+function transformIDSession(result) {
+  return { sessionId: result.guest_session_id }
+}
+export { trasformDate, transformMovies, transformIDSession }
