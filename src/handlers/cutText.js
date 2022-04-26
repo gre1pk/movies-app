@@ -1,4 +1,4 @@
-const cutTexst = (text, maxLength) => {
+const cutText = (text, maxLength) => {
   if (text.length > maxLength) {
     let cut = text.slice(0, maxLength)
     if (cut[cut.length - 1] !== ' ') {
@@ -9,4 +9,4 @@ const cutTexst = (text, maxLength) => {
   return text
 }
 
-export default cutTexst
+export default cutText
