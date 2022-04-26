@@ -46,8 +46,6 @@ export default class App extends React.Component {
       this.onGetRatedMovies()
     }
     this.setState({ tabActive: tabName, loading: true })
-
-    // zagruzt spisoc reiting vmesto []
   }
 
   onSearchMovies = (text) => {
@@ -78,7 +76,7 @@ export default class App extends React.Component {
   onLoadSessionID = () => {
     const idLocal = localStorage.getItem('sessionId')
     if (!idLocal) {
-      this.moviesDb.getSessionID().then((res) => localStorage.setItem('sessionId', res.guest_session_id))
+      this.moviesDb.getSessionID().then((res) => localStorage.setItem('sessionId', res.sessionId))
     }
   }
 
