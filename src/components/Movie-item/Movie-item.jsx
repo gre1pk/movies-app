@@ -1,9 +1,10 @@
-import { Card, Typography, Tag, Rate } from 'antd'
+import { Card, Typography, Tag } from 'antd'
 import './Movie-item.css'
 
+import RateStars from '../Rate-stars'
 import { GenresConsumer } from '../Genres-context'
 
-function MovieItem({ title, releaseDate, posterPath, overview, voteAverage, movieGenre }) {
+function MovieItem({ title, releaseDate, posterPath, overview, voteAverage, movieGenre, rating, idMovie }) {
   const { Text, Title } = Typography
 
   const colorReiting = (reit) => {
@@ -51,7 +52,9 @@ function MovieItem({ title, releaseDate, posterPath, overview, voteAverage, movi
           <GenresConsumer>{(genresId) => generis(genresId, movieGenre)}</GenresConsumer>
         </div>
         <Text className="card__overview">{overview}</Text>
-        <Rate className="card__rate" value={2} />
+        <div className="card__rate">
+          <RateStars rating={rating} idMovie={idMovie} />
+        </div>
       </div>
     </Card>
   )
