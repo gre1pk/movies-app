@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   min-width: 440px;
   height: 279px;
   filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.15));
@@ -19,7 +20,6 @@
   height: 100%;
 }
 .card__content {
-  position: relative;
   padding: 10px 20px 0 20px;
 }
 .card__header {
@@ -64,38 +64,39 @@
   bottom: 15px;
 }
 
-/* @media (max-width: 1024px) {
-  .card {
-    min-width: 340px;
-  }
-
-  .card__img {
-    width: 140px;
-    height: 200px;
-  }
-
-  .card__rate {
-    bottom: -55px;
-    left: -85px;
-  }
-} */
-
 @media (max-width: 480px) {
+  .ant-card-body {
+    display: block;
+  }
   .card {
-    /* display: grid;
-    grid-template-columns: 60px 296px;
-    grid-template-areas: 'img' 'content'; */
-    min-width: 388px;
+    min-width: auto;
     height: 245px;
   }
 
   .card__img {
-    grid-area: 'img';
     width: 60px;
     height: 91px;
+    top: 6px;
+    left: 10px;
+    position: absolute;
   }
+
   .card__content {
-    grid-area: 'content';
     padding: 4px 10px 0 10px;
+  }
+
+  .card__header,
+  .card__release-date,
+  .card-genres {
+    margin-left: 73px;
+  }
+  .card__rate {
+    right: 10px;
+  }
+  .card__overview {
+    margin-top: 19px;
+  }
+  h4.ant-typography {
+    line-height: 0.9;
   }
 }

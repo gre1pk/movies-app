@@ -30,3 +30,15 @@
     flex-direction: column;
   }
 }
+
+@media (max-width: 480px) {
+  .main {
+    width: auto;
+    padding: 0 16px;
+  }
+  .main .ant-row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    row-gap: 20px !important;
+  }
+}

@@ -22,3 +22,12 @@
   border-radius: 4px;
 }
 
+@media (max-width: 480px) {
+  .ant-col-12 {
+    max-width: 100%;
+  }
+  .ant-col {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
