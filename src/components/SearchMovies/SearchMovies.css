@@ -3,3 +3,13 @@
   height: 40px;
   margin: 19px 0 34px 0;
 }
+@media (max-width: 1024px) {
+  .input-search {
+    margin: 19px 0 34px -5px;
+  }
+}
+@media (max-width: 480px) {
+  .input-search {
+    margin: 19px 0 34px 0;
+  }
+}

@@ -14,10 +14,19 @@
   margin: 0 36px;
   background-color: #ffffff;
 }
-.main .ant-row{
+.main .ant-row {
   min-height: 75vh;
 }
 .spiner {
   margin: 10% auto;
   display: block;
+}
+@media (max-width: 1024px) {
+  .main {
+    margin: 0 auto;
+    width: 450px;
+  }
+  .main .ant-row {
+    flex-direction: column;
+  }
 }
