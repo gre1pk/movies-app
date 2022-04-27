@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { Rate } from 'antd'
+import PropTypes from 'prop-types'
 
 import MoviDbService from '../../services/moviDbService'
 
@@ -29,4 +30,8 @@ export default class RateStars extends Component {
       <Rate value={rateValue} count="10" onChange={this.rateChange} style={{ fontSize: 16 }} disabled={isAbility} />
     )
   }
+}
+
+RateStars.propTypes = {
+  idMovie: PropTypes.number.isRequired,
 }

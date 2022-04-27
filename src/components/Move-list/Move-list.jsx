@@ -1,6 +1,6 @@
 import { Row, Col, Alert, Pagination } from 'antd'
 import format from 'date-fns/format'
-import React from 'react'
+import PropTypes from 'prop-types'
 
 import './Move-list.css'
 import cutText from '../../handlers/cutText'
@@ -50,6 +50,20 @@ function MoveList({ movies, totalPages, currentPages, onCurrentPages }) {
       />
     </>
   )
+}
+
+MoveList.defaultProps = {
+  movies: [],
+  totalPages: 1,
+  currentPages: 1,
+  onCurrentPages: () => {},
+}
+
+MoveList.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.objectOf),
+  totalPages: PropTypes.number,
+  currentPages: PropTypes.number,
+  onCurrentPages: PropTypes.func,
 }
 
 export default MoveList

@@ -1,4 +1,5 @@
 import { Tabs } from 'antd'
+import PropTypes from 'prop-types'
 
 import './Page-header.css'
 
@@ -15,3 +16,11 @@ function PageHeader({ onTogleTab }) {
   )
 }
 export default PageHeader
+
+PageHeader.defaultProps = {
+  onTogleTab: () => {},
+}
+
+PageHeader.propTypes = {
+  onTogleTab: PropTypes.func,
+}
