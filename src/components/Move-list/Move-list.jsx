@@ -1,4 +1,4 @@
-import { Row, Col, Alert, Pagination } from 'antd'
+import { Row, Col, Alert } from 'antd'
 import format from 'date-fns/format'
 import PropTypes from 'prop-types'
 
@@ -7,7 +7,7 @@ import cutText from '../../handlers/cutText'
 import MovieItem from '../Movie-item'
 import { trasformDate } from '../../handlers/transformDate'
 
-function MoveList({ movies, totalPages, currentPages, onCurrentPages }) {
+function MoveList({ movies }) {
   if (movies.length < 1) {
     return <Alert message="not found" />
   }
@@ -38,32 +38,15 @@ function MoveList({ movies, totalPages, currentPages, onCurrentPages }) {
     )
   })
 
-  return (
-    <>
-      <Row gutter={[36, 37]}>{elements}</Row>
-      <Pagination
-        className="pagination"
-        total={totalPages}
-        showSizeChanger={false}
-        current={currentPages}
-        onChange={onCurrentPages}
-      />
-    </>
-  )
+  return <Row gutter={[36, 37]}>{elements}</Row>
 }
 
 MoveList.defaultProps = {
   movies: [],
-  totalPages: 1,
-  currentPages: 1,
-  onCurrentPages: () => {},
 }
 
 MoveList.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.objectOf),
-  totalPages: PropTypes.number,
-  currentPages: PropTypes.number,
-  onCurrentPages: PropTypes.func,
 }
 
 export default MoveList

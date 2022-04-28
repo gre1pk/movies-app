@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Spin, Alert } from 'antd'
+import { Layout, Spin, Alert, Pagination } from 'antd'
 import { Offline, Online } from 'react-detect-offline'
 import './App.css'
 
@@ -105,15 +105,18 @@ export default class App extends React.Component {
     const hasDate = !(loading || error)
     const errorMsg = error ? <Alert message="Error" type="error" /> : null
     const spiner = loading ? <Spin className="spiner" size="large" /> : null
-    const content = hasDate ? (
-      <MoveList
-        movies={movies}
-        totalPages={totalPages}
-        currentPages={currentPages}
-        onCurrentPages={this.onCurrentPages}
-      />
-    ) : null
+    const content = hasDate ? <MoveList movies={movies} /> : null
     const searchPanel = tabActive === 'search' ? <SearchMovies searchValue={this.onSearchMovies} /> : null
+    const paginationPanel =
+      tabActive === 'search' ? (
+        <Pagination
+          className="pagination"
+          showSizeChanger={false}
+          current={currentPages}
+          total={totalPages}
+          onChange={this.onCurrentPages}
+        />
+      ) : null
 
     return (
       <GenresProvider value={genresId}>
@@ -126,6 +129,7 @@ export default class App extends React.Component {
                 {errorMsg}
                 {spiner}
                 {content}
+                {paginationPanel}
               </Content>
             </Layout>
           </Online>
