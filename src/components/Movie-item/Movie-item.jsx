@@ -31,10 +31,10 @@ function MovieItem({ title, releaseDate, posterPath, overview, voteAverage, movi
   const generis = (genresId, movieGenreList) => {
     const element = movieGenreList.map((id) => {
       const re = genresId.filter((el) => el.id === id)
+      const gener = re.length > 0 ? re[0].name : (re.name = 'no data')
       return (
-        // tut ohibka v name !!!!!!!
         <Tag key={id} size="small">
-          {re[0].name}
+          {gener}
         </Tag>
       )
     })
