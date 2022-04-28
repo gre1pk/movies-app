@@ -129,9 +129,9 @@ export default class App extends React.Component {
                 {errorMsg}
                 {spiner}
                 {content}
-                {paginationPanel}
               </Content>
             </Layout>
+            {paginationPanel}
           </Online>
           <Offline>
             <h1>you are not online</h1>
