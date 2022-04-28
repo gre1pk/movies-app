@@ -56,7 +56,7 @@ function MovieItem({ title, releaseDate, posterPath, overview, voteAverage, movi
         <Text type="secondary" className="card__release-date">
           {releaseDate}
         </Text>
-        <div className="div">
+        <div className="card-genres">
           <GenresConsumer>{(genresId) => generis(genresId, movieGenre)}</GenresConsumer>
         </div>
         <Text className="card__overview">{overview}</Text>
